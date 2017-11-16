@@ -6,17 +6,27 @@ public  class Commercial extends Employe{
 
     private Double caAnnuel;
     private  Integer performance;
-    private enum notes{
+    private enum Note{
         INSUFFISANT, PASSABLE, BIEN, TRES_BIEN
     }
 
-//    public static notes equivalenceNote()
-//    {
-//        switch (this.performance){
-//            case 0 :
-//                return notes.INSUFFISANT;
-//        }
-//    }
+    public Note equivalenceNote()
+    {
+        switch (this.performance){
+            case 0 :
+                return Note.INSUFFISANT;
+            case 50:
+                return Note.INSUFFISANT;
+            case 100:
+                return Note.PASSABLE;
+            case 150:
+                return Note.BIEN;
+            case 200:
+                return Note.TRES_BIEN;
+            default:
+                return Note.INSUFFISANT;
+        }
+    }
 
 
     public boolean performanceEgale(Integer perf)
@@ -66,8 +76,7 @@ public  class Commercial extends Employe{
     }
 
     public Commercial(String nom, String prenom, String matricule, LocalDate dateEmbauche, Double salaire, Double caAnnuel, Integer performance) {
-        super(nom, prenom, matricule, dateEmbauche, salaire);
-        this.caAnnuel = caAnnuel;
+        this(nom, prenom, matricule, dateEmbauche, salaire, caAnnuel);
         this.performance = performance;
     }
 
