@@ -3,8 +3,8 @@ package com.ipiecoles.java.java220;
 import com.ipiecoles.java.java220.exceptions.TechnicienException;
 import org.joda.time.LocalDate;
 
-import java.util.HashSet;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Manager extends Employe{
 
@@ -58,6 +58,21 @@ public class Manager extends Employe{
         }
     }
 
+    public List equipeParGrade(){
+        return equipe.stream().sorted(Comparator.comparing(Technicien::getGrade, Collections.reverseOrder())).
+                collect(Collectors.toList());
+    }
+
+    public Double salaireEquipeGrade1()
+    {
+
+        Double result = 0.;
+        for (Technicien t : equipe.stream().filter(p->p.getGrade() ==1).collect(Collectors.toList())){
+            result += t.getSalaire();
+        }
+
+        return result;
+    }
 
 
 }
