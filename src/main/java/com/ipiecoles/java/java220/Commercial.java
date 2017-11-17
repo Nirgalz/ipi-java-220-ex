@@ -2,13 +2,15 @@ package com.ipiecoles.java.java220;
 
 import org.joda.time.LocalDate;
 
+enum Note{
+    INSUFFISANT, PASSABLE, BIEN, TRES_BIEN
+}
+
 public  class Commercial extends Employe{
 
     private Double caAnnuel;
     private  Integer performance;
-    private enum Note{
-        INSUFFISANT, PASSABLE, BIEN, TRES_BIEN
-    }
+
 
     public Note equivalenceNote()
     {
@@ -27,6 +29,15 @@ public  class Commercial extends Employe{
                 return Note.INSUFFISANT;
         }
     }
+    public Integer isPerformance()
+    {
+        return this.performance;
+    }
+
+    public void setPerformance(Integer performance) {
+        this.performance = performance;
+    }
+
 
 
     public boolean performanceEgale(Integer perf)
