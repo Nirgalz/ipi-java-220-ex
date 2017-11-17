@@ -58,4 +58,22 @@ public class Technicien extends Employe implements Comparable<Technicien>{
     public int compareTo(Technicien o) {
         return Integer.compare(o.getGrade(), this.grade);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Technicien)) return false;
+        if (!super.equals(o)) return false;
+
+        Technicien that = (Technicien) o;
+
+        return grade != null ? grade.equals(that.grade) : that.grade == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (grade != null ? grade.hashCode() : 0);
+        return result;
+    }
 }

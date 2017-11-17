@@ -107,7 +107,10 @@ public class ManagerTest {
         }
 
         try {
-            TestUtils.invokeSetter(d, "equipe", Stream.of(TestUtils.getClasse("Technicien").getConstructor(String.class, String.class, String.class, LocalDate.class, Double.class, Integer.class).newInstance(null, null, null, null, 0.0, 1), TestUtils.getClasse("Technicien").getConstructor(String.class, String.class, String.class, LocalDate.class, Double.class, Integer.class).newInstance(null, null, null, null, 0.0, 2)).collect(Collectors.toSet()));
+            TestUtils.invokeSetter(d, "equipe",
+                    Stream.of(
+                            TestUtils.getClasse("Technicien").getConstructor(String.class, String.class, String.class, LocalDate.class, Double.class, Integer.class).newInstance(null, null, null, null, 0.0, 1),
+                            TestUtils.getClasse("Technicien").getConstructor(String.class, String.class, String.class, LocalDate.class, Double.class, Integer.class).newInstance(null, null, null, null, 0.0, 2)).collect(Collectors.toSet()));
             Assertions.assertThat(TestUtils.callMethod(d, "getPrimeAnnuelle")).isEqualTo(1508.5);
         }
         catch(Exception technicienException){

@@ -1,6 +1,10 @@
 package com.ipiecoles.java.java220;
 
+import com.ipiecoles.java.java220.exceptions.TechnicienException;
+import org.joda.time.LocalDate;
+
 import java.util.HashSet;
+import java.util.Objects;
 
 public class Manager extends Employe{
 
@@ -19,6 +23,15 @@ public class Manager extends Employe{
         this.equipe.add(tech);
     }
 
+    public void ajoutTechnicienEquipe(String nom, String prenom, String matricule, LocalDate dateEmbauche, Double salaire, Integer grade) throws TechnicienException
+    {
+        Technicien tech = new Technicien(nom,prenom,matricule,dateEmbauche,salaire,grade);
+        this.equipe.add(tech);
+    }
+
+
+
+
     @Override
     public void setSalaire(Double salaire) {
         Double size = (double)this.equipe.size();
@@ -31,4 +44,20 @@ public class Manager extends Employe{
     public Double getPrimeAnnuelle() {
         return Entreprise.primeAnnuelleBase() + this.equipe.size() * Entreprise.PRIME_MANAGER_PAR_TECHNICIEN;
     }
+
+    @Override
+    public void augmenterSalaire(Double pourcentage) {
+        super.augmenterSalaire(pourcentage);
+        augmenterSalaireEquipe( pourcentage);
+
+    }
+
+    private void augmenterSalaireEquipe(Double pourcentage) {
+        for (Technicien technicien : equipe) {
+            technicien.augmenterSalaire(pourcentage);
+        }
+    }
+
+
+
 }
